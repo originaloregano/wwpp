@@ -66,6 +66,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    bcrypt (3.1.20)
     bindex (0.8.1)
     bootsnap (1.17.0)
       msgpack (~> 1.2)
@@ -201,6 +202,7 @@ PLATFORMS
   arm64-darwin-23
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap
   debug
   image_processing (~> 1.2)
@@ -221,4 +223,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.4.22
+   2.5.3
