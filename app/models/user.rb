@@ -1,16 +1,11 @@
 class User < ApplicationRecord
-  CONFIRMATION_TOKEN_EXPIRATION = 10.minutes
-  PASSWORD_RESET_TOKEN_EXPIRATION = 10.minutes
+  # Include default devise modules. Others available are:
+  # :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable,
+         :recoverable, :rememberable, :validatable
   has_subscriptions
-  has_secure_password
 
-  has_many :active_sessions, dependent: :destroy
-  before_save :downcase_email
-  attr_accessor :current_password
-  before_save :downcase_unconfirmed_email
-  validates :unconfirmed_email, format: {with: URI::MailTo::EMAIL_REGEXP, allow_blank: true}
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true, uniqueness: true
-  MAILER_FROM_EMAIL = "no-reply@example.com"
   def send_confirmation_email!
     confirmation_token = generate_confirmation_token
     UserMailer.confirmation(self, confirmation_token).deliver_now

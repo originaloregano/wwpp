@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include Authentication
   include ApplicationHelper
-  before_action :require_login
+  # before_action :require_login
 
   private
   def require_login
